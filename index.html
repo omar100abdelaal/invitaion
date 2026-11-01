@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>دعوة زفاف محمد ومنى | Mohamed &amp; Mona</title>
+  <meta name="description" content="دعوة زفاف فاخرة وتفاعلية للأجهزة المحمولة - محمد ومنى. نتشرف بحضوركم ومشاركتنا فرحتنا." />
+  <meta name="theme-color" content="#f6ecdc" />
+  <link rel="icon" href="assets/rose.webp" type="image/webp" />
+
+  <!-- Google Fonts: Elegant Arabic & Latin Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@400;600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Reem+Kufi:wght@400;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Audio Element for Background Music -->
+  <audio id="bgAudio" loop preload="auto" src="assets/audio/wedding-melody.mp3"></audio>
+
+  <!-- ========================================================================
+       WAX SEAL OPENING ENVELOPE (FOLDING DOORS OVERLAY)
+       ======================================================================== -->
+  <div class="seal-opening-screen" id="sealScreen">
+    <!-- Left Folding Door -->
+    <div class="envelope-door door-left"></div>
+    <!-- Right Folding Door -->
+    <div class="envelope-door door-right"></div>
+    <!-- Vertical Seam Line -->
+    <div class="door-seam-line"></div>
+
+    <!-- Top Calligraphy Header -->
+    <div class="seal-calligraphy-wrapper">
+      <img src="assets/inv-arabe-couleur-or.webp" alt="دعوة زفاف" class="seal-calligraphy-img" />
+    </div>
+
+    <!-- Prompt Above Wax Seal -->
+    <div class="seal-prompt">
+      <span>اضغطوا على الختم</span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-down-icon">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+
+    <!-- Center Wax Seal Button -->
+    <button type="button" class="wax-seal-btn" id="waxSealBtn" aria-label="افتحوا الدعوة">
+      <div class="seal-pulse-ring"></div>
+      <span class="seal-monogram">M &amp; M</span>
+      <div class="seal-names">
+        <span>Mohamed</span>
+        <span style="letter-spacing: 0.1em; font-size: 10px;">&amp;</span>
+        <span>Mona</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- ========================================================================
+       MAIN APP CONTAINER (OPTIMIZED FOR MOBILE SCREENS)
+       ======================================================================== -->
+  <div class="app-viewport-wrapper">
+    <main class="invitation-container">
+
+      <!-- Top Sticky Quick Bar (Share & Music) -->
+      <header class="top-action-bar">
+        <button type="button" class="top-pill-btn" id="shareBtn" aria-label="مشاركة الدعوة">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+          <span>مشاركة</span>
+        </button>
+
+        <button type="button" class="top-pill-btn" id="musicToggleBtn" aria-label="الموسيقى">
+          <div class="audio-visualizer-bars">
+            <span class="viz-bar"></span>
+            <span class="viz-bar"></span>
+            <span class="viz-bar"></span>
+          </div>
+          <span class="music-btn-text">موسيقى</span>
+        </button>
+      </header>
+
+      <!-- ====================================================================
+           HERO SECTION: VIDEO/CHATEAU BACKGROUND & NAMES
+           ==================================================================== -->
+      <section class="hero-section" id="hero">
+        <!-- Background Video Loop -->
+        <video class="hero-video" src="assets/video.mp4" autoplay loop muted playsinline preload="auto"></video>
+        <div class="hero-gradient-overlay"></div>
+
+        <!-- Top Calligraphy Ornament Frame -->
+        <div class="hero-calligraphy-frame">
+          <img src="assets/inv-arabe-couleur-or.webp" alt="دعوة زفاف" />
+        </div>
+
+        <!-- Latin Couple Names -->
+        <div class="hero-names-container">
+          <h1 class="hero-name">Mohamed</h1>
+          <span class="hero-ampersand">&amp;</span>
+          <h1 class="hero-name">Mona</h1>
+        </div>
+
+        <!-- Scroll Cue Indicator -->
+        <div class="hero-scroll-cue">
+          <div class="hero-cue-line"></div>
+        </div>
+
+        <!-- Soft Bottom Fade -->
+        <div class="hero-bottom-fade"></div>
+      </section>
+
+      <!-- ====================================================================
+           INVITATION CONTENT
+           ==================================================================== -->
+      <div class="invitation-content">
+
+        <!-- 1. Quranic Verse & Royal Invitation Card -->
+        <section class="luxury-card" id="introduction">
+          <div class="ornamental-divider">
+            <div class="divider-line"></div>
+            <div class="divider-diamond"></div>
+            <svg viewBox="0 0 64 24" fill="currentColor" style="width: 38px; height: 18px; color: #b45309;">
+              <path d="M32,12 C30,9 26,8 22,10 C18,12 18,16 22,18 C26,20 30,15 32,12 Z" opacity="0.9"></path>
+              <path d="M32,12 C34,9 38,8 42,10 C46,12 46,16 42,18 C38,20 34,15 32,12 Z" opacity="0.9"></path>
+              <path d="M32,4 C31,8 29,10 27,11 C29,12 31,14 32,18 C33,14 35,12 37,11 C35,10 33,8 32,4 Z"></path>
+            </svg>
+            <div class="divider-diamond"></div>
+            <div class="divider-line right"></div>
+          </div>
+
+          <p class="quran-verse">
+            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+          </p>
+
+          <div class="ornamental-divider" style="margin: 10px auto;">
+            <div class="divider-line" style="width: 32px;"></div>
+            <div class="divider-diamond" style="width: 5px; height: 5px;"></div>
+            <div class="divider-line right" style="width: 32px;"></div>
+          </div>
+
+          <p class="intro-greeting">
+            نتشرف بدعوتكم لمشاركتنا فرحة زفافنا والاحتفال معنا بهذه المناسبة المباركة.
+          </p>
+        </section>
+
+        <!-- 2. Interactive Calendar & Save the Date -->
+        <section class="luxury-card calendar-card" id="date">
+          <div class="calendar-header-binder">
+            <div class="binder-ring ring-left"></div>
+            <div class="binder-ring ring-right"></div>
+            <h2 class="calendar-month-title">نوفمبر 2026</h2>
+          </div>
+
+          <div class="calendar-body">
+            <div class="calendar-weekdays">
+              <span>الأحد</span>
+              <span>الاثنين</span>
+              <span>الثلاثاء</span>
+              <span>الأربعاء</span>
+              <span>الخميس</span>
+              <span>الجمعة</span>
+              <span>السبت</span>
+            </div>
+
+            <!-- Calendar Grid (November 2026 Starts on Sunday) -->
+            <div class="calendar-grid">
+              <span class="cal-day">1</span>
+              <span class="cal-day">2</span>
+              <span class="cal-day">3</span>
+              <span class="cal-day">4</span>
+              <span class="cal-day">5</span>
+              <span class="cal-day">6</span>
+              <span class="cal-day">7</span>
+
+              <span class="cal-day">8</span>
+              <span class="cal-day">9</span>
+              <span class="cal-day">10</span>
+              <span class="cal-day">11</span>
+              <!-- Wedding Day 12 Highlighted -->
+              <span class="cal-day event-day">12</span>
+              <span class="cal-day">13</span>
+              <span class="cal-day">14</span>
+
+              <span class="cal-day">15</span>
+              <span class="cal-day">16</span>
+              <span class="cal-day">17</span>
+              <span class="cal-day">18</span>
+              <span class="cal-day">19</span>
+              <span class="cal-day">20</span>
+              <span class="cal-day">21</span>
+
+              <span class="cal-day">22</span>
+              <span class="cal-day">23</span>
+              <span class="cal-day">24</span>
+              <span class="cal-day">25</span>
+              <span class="cal-day">26</span>
+              <span class="cal-day">27</span>
+              <span class="cal-day">28</span>
+
+              <span class="cal-day">29</span>
+              <span class="cal-day">30</span>
+              <span class="cal-day empty"></span>
+              <span class="cal-day empty"></span>
+              <span class="cal-day empty"></span>
+              <span class="cal-day empty"></span>
+              <span class="cal-day empty"></span>
+            </div>
+
+            <div class="event-time-badge">
+              <span>الخميس</span>
+              <span>•</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span>17:00</span>
+            </div>
+
+            <div>
+              <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AF%D8%B9%D9%88%D8%A9%20%D8%B2%D9%81%D8%A7%D9%81%20Mohamed%20%26%20Mona&dates=20261112T150000Z/20261112T220000Z&details=%D9%86%D8%AA%D8%B4%D8%B1%D9%81%20%D8%A8%D8%AF%D8%B9%D9%88%D8%AA%D9%83%D9%85%20%D9%84%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%AA%D9%86%D8%A7%20%D9%81%D8%B1%D8%AD%D8%A9%20%D8%B2%D9%81%D8%A7%D9%81%D9%86%D8%A7%20%D9%88%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D9%81%D8%A7%D9%84%20%D9%85%D8%B9%D9%86%D8%A7%20%D8%A8%D9%87%D8%B0%D9%87%20%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D9%83%D8%A9.&location=%D9%82%D8%A7%D8%B9%D8%A9%20%D8%B1%D9%88%D8%B2%20%D9%87%D9%88%D9%84" target="_blank" rel="noopener noreferrer" class="save-date-btn" id="saveDateBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                <span>حفظ التاريخ</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Live Countdown Timer -->
+        <section class="luxury-card" id="countdown">
+          <span class="section-badge">العد التنازلي</span>
+          <div class="countdown-grid">
+            <div class="countdown-box">
+              <span class="countdown-num" id="countDays">00</span>
+              <span class="countdown-label">أيام</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="countHours">00</span>
+              <span class="countdown-label">ساعات</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="countMinutes">00</span>
+              <span class="countdown-label">دقائق</span>
+            </div>
+            <div class="countdown-box">
+              <span class="countdown-num" id="countSeconds">00</span>
+              <span class="countdown-label">ثواني</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Program / Timeline with Rose Indicator -->
+        <section class="luxury-card" id="timeline">
+          <span class="section-badge">برنامج الحفل</span>
+          <h2 class="section-title">تفاصيل الاحتفال</h2>
+
+          <div class="timeline-container" id="timelineContainer">
+            <!-- Timeline Track -->
+            <div class="timeline-track-bg" id="timelineTrack"></div>
+            <div class="timeline-track-progress" id="timelineProgress"></div>
+
+            <!-- Floating Rose Indicator -->
+            <div class="timeline-rose" id="timelineRose">
+              <img src="assets/rose.webp" alt="Rose Indicator" />
+            </div>
+
+            <!-- Event 1 -->
+            <div class="timeline-item active" data-time="16:00">
+              <span class="timeline-time">16:00</span>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-title">استقبال الضيوف</h3>
+                <p class="timeline-desc">مشروبات ترحيبية وتوزيع بطاقات الجلوس</p>
+              </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="timeline-item" data-time="17:00">
+              <span class="timeline-time">17:00</span>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-title">مراسم الزفاف</h3>
+                <p class="timeline-desc">تبادل العهود والخواتم والتقاط الصور التذكارية</p>
+              </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="timeline-item" data-time="19:00">
+              <span class="timeline-time">19:00</span>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-title">عشاء احتفالي</h3>
+                <p class="timeline-desc">بوفيه ملكي فاخر ومفاجآت خاصة</p>
+              </div>
+            </div>
+
+            <!-- Event 4 -->
+            <div class="timeline-item" data-time="22:00">
+              <span class="timeline-time">22:00</span>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="timeline-title">حفلة راقصة</h3>
+                <p class="timeline-desc">افتتاح الحفل الموسيقي والرقص والاحتفال حتى الفجر</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Photo Gallery (Polaroid Horizontal Snap & Lightbox) -->
+        <section class="luxury-card" id="gallery" style="padding-left: 8px; padding-right: 8px;">
+          <span class="section-badge">معرض الصور</span>
+          <h2 class="section-title">لحظاتنا الجميلة</h2>
+
+          <div class="gallery-carousel" id="galleryCarousel">
+            <div class="polaroid-card">
+              <div class="polaroid-img-box">
+                <img src="assets/1.webp" alt="Wedding Moment 1" loading="lazy" />
+                <div class="polaroid-view-overlay">
+                  <div class="polaroid-eye-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="polaroid-pin"></div>
+            </div>
+
+            <div class="polaroid-card">
+              <div class="polaroid-img-box">
+                <img src="assets/2.webp" alt="Wedding Moment 2" loading="lazy" />
+                <div class="polaroid-view-overlay">
+                  <div class="polaroid-eye-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="polaroid-pin"></div>
+            </div>
+
+            <div class="polaroid-card">
+              <div class="polaroid-img-box">
+                <img src="assets/3.webp" alt="Wedding Moment 3" loading="lazy" />
+                <div class="polaroid-view-overlay">
+                  <div class="polaroid-eye-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="polaroid-pin"></div>
+            </div>
+
+            <div class="polaroid-card">
+              <div class="polaroid-img-box">
+                <img src="assets/4.webp" alt="Wedding Moment 4" loading="lazy" />
+                <div class="polaroid-view-overlay">
+                  <div class="polaroid-eye-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="polaroid-pin"></div>
+            </div>
+          </div>
+
+          <div class="gallery-dots">
+            <span class="gallery-dot active"></span>
+            <span class="gallery-dot"></span>
+            <span class="gallery-dot"></span>
+            <span class="gallery-dot"></span>
+          </div>
+        </section>
+
+        <!-- 6. Venue Location & Map -->
+        <section class="luxury-card" id="location">
+          <span class="section-badge">مكان الاستقبال</span>
+          <h2 class="section-title">كيفية الوصول</h2>
+
+          <div class="location-pin-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+
+          <h3 class="venue-name">قاعة روز هول</h3>
+
+          <!-- Embedded Map -->
+          <div class="map-card-wrapper">
+            <iframe 
+              title="خريطة موقع الحفل"
+              src="https://maps.google.com/maps?q=Canaria+wedding+hall,+Kafr+El-Naeem,+Mit+Ghamr&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
+              loading="lazy" 
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <a href="https://maps.app.goo.gl/C1AqSrwuAqkaNfP9A?g_st=ic" target="_blank" rel="noopener noreferrer" class="google-maps-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            <span>فتح خرائط GOOGLE</span>
+          </a>
+        </section>
+
+        <!-- 7. RSVP Form (تأكيد الحضور) -->
+        <section class="luxury-card" id="rsvp">
+          <div class="rsvp-counter-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span id="attendeesCount">142</span>
+            <span>تأكيدات الحضور</span>
+          </div>
+
+          <h2 class="section-title">تأكيد الحضور</h2>
+          <p class="rsvp-deadline">يرجى الرد قبل 5 نوفمبر 2026</p>
+
+          <form class="rsvp-form" id="rsvpForm">
+            <input type="hidden" id="attendanceStatus" value="attending" />
+
+            <div class="form-group">
+              <label class="form-label" for="guestName">الاسم الكامل *</label>
+              <input type="text" id="guestName" class="form-input" placeholder="مثال: أحمد منصور" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">الحضور</label>
+              <div class="attendance-toggle-grid">
+                <button type="button" class="attendance-btn active" data-status="attending">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>حاضر</span>
+                </button>
+                <button type="button" class="attendance-btn" data-status="declined">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                  <span>غير حاضر</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="guestCount">عدد الأشخاص</label>
+              <select id="guestCount" class="form-select">
+                <option value="1">شخص واحد (1)</option>
+                <option value="2">شخصان (2)</option>
+                <option value="3">3 أشخاص</option>
+                <option value="4">4 أشخاص</option>
+                <option value="5">5 أشخاص وأكثر</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="guestNote">ملاحظة / قيود غذائية</label>
+              <textarea id="guestNote" rows="2" class="form-textarea" placeholder="اختياري (مثال: وجبة نباتية، حساسية...)"></textarea>
+            </div>
+
+            <button type="submit" class="rsvp-submit-btn">
+              <span>تأكيد</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </form>
+        </section>
+
+        <!-- 8. Guestbook / Congratulatory Wishes (دفتر التهاني) -->
+        <section class="luxury-card" id="guestbook">
+          <span class="section-badge">دفتر التهاني</span>
+          <h2 class="section-title">اتركوا تهانيكم</h2>
+
+          <form id="guestbookForm" class="rsvp-form" style="margin-top: 18px;">
+            <div class="form-group">
+              <label class="form-label" for="wishAuthor">اسمكم / العائلة *</label>
+              <input type="text" id="wishAuthor" class="form-input" placeholder="مثال: عائلة السعدي" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="wishText">رسالة التهنئة *</label>
+              <textarea id="wishText" rows="3" class="form-textarea" placeholder="اكتبوا تهانيكم ومباركتكم للعروسين هنا..." required></textarea>
+            </div>
+
+            <button type="submit" class="rsvp-submit-btn" style="background: linear-gradient(135deg, #5a3a24, #7b4d27);">
+              <span>نشر التهنئة</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+          </form>
+
+          <div class="guestbook-feed" id="guestbookFeed">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- 9. Contact Us Section -->
+        <section class="luxury-card" id="contact">
+          <span class="section-badge">هل لديكم أسئلة؟</span>
+          <h2 class="section-title">تواصلوا معنا</h2>
+
+          <div class="contact-actions-grid">
+            <a href="https://wa.me/41221234567" target="_blank" rel="noopener noreferrer" class="contact-pill-link whatsapp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+
+            <a href="tel:+41221234567" class="contact-pill-link phone">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span>اتصال</span>
+            </a>
+
+            <a href="mailto:mariage@example.com" class="contact-pill-link email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <span>البريد</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="invitation-footer">
+          <div class="crafted-badge">
+            <span class="crafted-badge-inner">Crafted with 🤍 by Buharita.com</span>
+          </div>
+        </footer>
+
+      </div>
+    </main>
+
+    <!-- ======================================================================
+         FLOATING MOBILE BOTTOM NAVIGATION BAR
+         ====================================================================== -->
+    <nav class="bottom-nav-bar" aria-label="شريط التنقل السريع">
+      <!-- 1. Contact -->
+      <button type="button" class="nav-item-btn" data-target="contact" aria-label="تواصل">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span>تواصل</span>
+      </button>
+
+      <!-- 2. Music Toggle -->
+      <button type="button" class="nav-item-btn" id="musicNavBtn" aria-label="الموسيقى">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
+        <span>الموسيقى</span>
+      </button>
+
+      <!-- 3. Photos -->
+      <button type="button" class="nav-item-btn" data-target="gallery" aria-label="الصور">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+          <circle cx="12" cy="13" r="3"/>
+        </svg>
+        <span>الصور</span>
+      </button>
+
+      <!-- 4. Location -->
+      <button type="button" class="nav-item-btn" data-target="location" aria-label="المكان">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>المكان</span>
+      </button>
+
+      <!-- 5. RSVP (Primary Highlighted Heart) -->
+      <button type="button" class="nav-item-btn rsvp-primary" data-target="rsvp" aria-label="الحضور">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span>الحضور</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ========================================================================
+       FULLSCREEN LIGHTBOX MODAL
+       ======================================================================== -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <button type="button" class="lightbox-close-btn" id="lightboxClose" aria-label="إغلاق">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="lightbox-img-wrapper">
+      <img id="lightboxImg" src="" alt="Full view" />
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotification">
+    <span id="toastText"></span>
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
