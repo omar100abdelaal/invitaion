@@ -1438,6 +1438,21 @@ body {
 }
 .contact-pill-link.whatsapp svg { color: #25d366; }
 
+/* Footer Author Link */
+.crafted-author-link {
+  color: #25d366;
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(37, 211, 102, 0.5);
+  transition: color 0.2s, border-color 0.2s;
+  padding-bottom: 1px;
+}
+.crafted-author-link:hover,
+.crafted-author-link:active {
+  color: #1ead55;
+  border-color: #1ead55;
+}
+
 /* ==========================================================================
    10. FLOATING MOBILE BOTTOM NAVIGATION BAR
    ========================================================================== */
@@ -1473,12 +1488,15 @@ body {
   color: var(--color-muted-brown);
   cursor: pointer;
   outline: none;
-  padding: 6px 12px;
+  padding: 6px 6px;
   border-radius: var(--radius-pill);
   transition: all 0.25s ease;
   font-family: inherit;
   font-size: 10px;
   font-weight: 700;
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .nav-item-btn svg {
@@ -1499,13 +1517,14 @@ body {
   color: var(--color-gold-600);
 }
 
-/* Primary Highlighted RSVP Heart Button */
+/* Primary Highlighted RSVP / Wishes Heart Button */
 .nav-item-btn.rsvp-primary {
   background: #ffffff;
   box-shadow: 0 6px 18px rgba(201, 164, 81, 0.35);
   border: 1px solid rgba(201, 164, 81, 0.35);
   color: var(--color-dark-brown);
-  padding: 6px 16px;
+  padding: 6px 10px;
+  flex: 1.15;
 }
 
 .nav-item-btn.rsvp-primary svg {
