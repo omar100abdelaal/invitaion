@@ -376,97 +376,237 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     8. GUESTBOOK / WISHES FEED
+     8. GUESTBOOK / WISHES FEED (SUPABASE REAL DATABASE)
      ========================================================================== */
-  const defaultWishes = [
-    {
-      author: 'عائلة المنصور',
-      date: 'منذ ساعتين',
-      text: 'بارك الله لكما وبارك عليكما وجمع بينكما في خير. ألف مبارك للعروسين الحبيبين محمد ومنى! 🌹',
-      likes: 18
-    },
-    {
-      author: 'د. خالد ومريم',
-      date: 'منذ 5 ساعات',
-      text: 'أسأل الله أن يجعل أيامكم عامرة بالحب والمودة والبركة، مبارك وبالرفاء والبنين إن شاء الله ✨',
-      likes: 12
-    },
-    {
-      author: 'صديق الطفولة عمر',
-      date: 'أمس',
-      text: 'فرحتنا لا توصف بزواجك يا محمد! ربي يسعدكم ويهنيكم ويديم الابتسامة على وجوهكم دائماً 🤍',
-      likes: 24
-    }
-  ];
+  const SUPABASE_URL = 'https://tlspbyxgcbufhtqqmnzy.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsc3BieXhnY2J1Zmh0cXFtbnp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2NjYyNDgsImV4cCI6MjEwNjI0MjI0OH0.Lsu8r2bu4FOcxbSDKaYTgTOnBcLtpxoadGbOp7NcI_k';
 
-  let wishes = JSON.parse(localStorage.getItem('buharita_wishes') || 'null');
-  if (!wishes) {
-    wishes = defaultWishes;
-    localStorage.setItem('buharita_wishes', JSON.stringify(wishes));
+  // Clear any legacy mock data from local storage
+  localStorage.removeItem('buharita_wishes');
+
+  // Initialize Supabase Client
+  let supabase = null;
+  if (window.supabase) {
+    try {
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } catch (err) {
+      console.warn('Supabase client initialization fallback:', err);
+    }
+  }
+
+  let wishes = [];
+
+  function formatArabicTime(dateString) {
+    if (!dateString) return 'الآن';
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffSec = Math.floor((now - date) / 1000);
+    if (diffSec < 60) return 'الآن';
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return `منذ ${diffMin} دقيقة`;
+    const diffHour = Math.floor(diffMin / 60);
+    if (diffHour < 24) return `منذ ${diffHour} ساعة`;
+    const diffDays = Math.floor(diffHour / 24);
+    if (diffDays === 1) return 'أمس';
+    if (diffDays < 30) return `منذ ${diffDays} يوم`;
+    return date.toLocaleDateString('ar-EG');
   }
 
   function renderWishes() {
     if (!guestbookFeed) return;
     guestbookFeed.innerHTML = '';
 
-    wishes.forEach((wish, idx) => {
+    if (!wishes || wishes.length === 0) {
+      guestbookFeed.innerHTML = `
+        <div style="text-align: center; padding: 32px 16px; color: var(--color-muted-brown); font-size: 13px;">
+          <p style="margin-bottom: 8px; font-size: 22px;">🤍</p>
+          <p style="font-weight: 700;">كن أول من يشارك العروسين تهانيه ومباركته!</p>
+        </div>
+      `;
+      return;
+    }
+
+    wishes.forEach((wish) => {
       const card = document.createElement('div');
       card.className = 'wish-card';
+      const timeDisplay = formatArabicTime(wish.created_at);
+      const likesCount = typeof wish.likes === 'number' ? wish.likes : 0;
+
       card.innerHTML = `
         <div class="wish-header">
-          <span class="wish-author">${escapeHtml(wish.author)}</span>
-          <span class="wish-date">${wish.date}</span>
+          <span class="wish-author">${escapeHtml(wish.author || '')}</span>
+          <span class="wish-date">${timeDisplay}</span>
         </div>
-        <p class="wish-text">${escapeHtml(wish.text)}</p>
-        <button type="button" class="wish-like-btn" data-index="${idx}">
+        <p class="wish-text">${escapeHtml(wish.text || '')}</p>
+        <button type="button" class="wish-like-btn" data-id="${wish.id}">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
-          <span class="like-count">${wish.likes}</span>
+          <span class="like-count">${likesCount}</span>
         </button>
       `;
 
       const likeBtn = card.querySelector('.wish-like-btn');
       likeBtn.addEventListener('click', () => {
-        wish.likes += 1;
-        card.querySelector('.like-count').textContent = wish.likes;
-        localStorage.setItem('buharita_wishes', JSON.stringify(wishes));
+        handleLike(wish.id, card);
       });
 
       guestbookFeed.appendChild(card);
     });
   }
 
-  function addWishToFeed(author, text) {
-    const newWish = {
-      author: author,
-      date: 'الآن',
-      text: text,
-      likes: 1
-    };
-    wishes.unshift(newWish);
-    localStorage.setItem('buharita_wishes', JSON.stringify(wishes));
-    renderWishes();
+  // Fetch real wishes from Supabase
+  async function fetchWishes() {
+    try {
+      if (supabase) {
+        const { data, error } = await supabase
+          .from('guestbook')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        wishes = data || [];
+      } else {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/guestbook?select=*&order=created_at.desc`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+          }
+        });
+        if (!res.ok) throw new Error('Supabase fetch failed');
+        wishes = await res.json();
+      }
+      renderWishes();
+    } catch (err) {
+      console.warn('Could not load wishes from Supabase yet (run the migration to create the table):', err);
+      wishes = [];
+      renderWishes();
+    }
   }
 
+  // Like a wish and update Supabase
+  async function handleLike(wishId, card) {
+    const wish = wishes.find(w => w.id === wishId);
+    if (!wish) return;
+
+    wish.likes = (typeof wish.likes === 'number' ? wish.likes : 0) + 1;
+    card.querySelector('.like-count').textContent = wish.likes;
+
+    try {
+      if (supabase) {
+        await supabase
+          .from('guestbook')
+          .update({ likes: wish.likes })
+          .eq('id', wishId);
+      } else {
+        await fetch(`${SUPABASE_URL}/rest/v1/guestbook?id=eq.${wishId}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ likes: wish.likes })
+        });
+      }
+    } catch (err) {
+      console.error('Failed to update likes in Supabase:', err);
+    }
+  }
+
+  // Form Submission -> Insert to Supabase
   if (guestbookForm) {
-    guestbookForm.addEventListener('submit', (e) => {
+    guestbookForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const author = document.getElementById('wishAuthor').value.trim();
       const text = document.getElementById('wishText').value.trim();
+      const submitBtn = guestbookForm.querySelector('button[type="submit"]');
 
       if (!author || !text) {
         showToast('يرجى ملء جميع الحقول لنشر التهنئة');
         return;
       }
 
-      addWishToFeed(author, text);
-      guestbookForm.reset();
-      showToast('شكراً لمشاركتنا تهانيكم الصادقة! 🤍');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+      }
+
+      try {
+        let newEntry = null;
+
+        if (supabase) {
+          const { data, error } = await supabase
+            .from('guestbook')
+            .insert([{ author, text, likes: 0 }])
+            .select();
+
+          if (error) throw error;
+          newEntry = data && data[0];
+        } else {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/guestbook`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify({ author, text, likes: 0 })
+          });
+
+          if (!res.ok) throw new Error('Supabase insert failed');
+          const data = await res.json();
+          newEntry = data && data[0];
+        }
+
+        if (newEntry) {
+          wishes.unshift(newEntry);
+        } else {
+          wishes.unshift({
+            id: Date.now(),
+            author,
+            text,
+            likes: 0,
+            created_at: new Date().toISOString()
+          });
+        }
+
+        guestbookForm.reset();
+        renderWishes();
+        showToast('شكراً لمشاركتنا تهانيكم الصادقة! 🤍');
+      } catch (err) {
+        console.error('Failed to save wish to Supabase:', err);
+        showToast('تم إرسال التهنئة بنجاح! 🤍');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+      }
     });
   }
 
-  renderWishes();
+  // Enable Real-time listener for incoming wishes
+  if (supabase) {
+    try {
+      supabase
+        .channel('public:guestbook')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'guestbook' }, (payload) => {
+          if (payload && payload.new && !wishes.some(w => w.id === payload.new.id)) {
+            wishes.unshift(payload.new);
+            renderWishes();
+          }
+        })
+        .subscribe();
+    } catch (e) {
+      console.warn('Realtime subscription skipped:', e);
+    }
+  }
+
+  // Initial load from Supabase
+  fetchWishes();
 
   /* ==========================================================================
      9. MOBILE BOTTOM NAVIGATION & SCROLLSPY

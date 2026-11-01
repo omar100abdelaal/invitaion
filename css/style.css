@@ -1426,9 +1426,17 @@ body {
   background: #ffffff;
 }
 
+.contact-pill-link.whatsapp {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+}
+.contact-pill-link.whatsapp:hover,
+.contact-pill-link.whatsapp:active {
+  background: #ffffff;
+  border-color: rgba(37, 211, 102, 0.6);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.18);
+}
 .contact-pill-link.whatsapp svg { color: #25d366; }
-.contact-pill-link.phone svg { color: var(--color-gold-600); }
-.contact-pill-link.email svg { color: #3b82f6; }
 
 /* ==========================================================================
    10. FLOATING MOBILE BOTTOM NAVIGATION BAR
